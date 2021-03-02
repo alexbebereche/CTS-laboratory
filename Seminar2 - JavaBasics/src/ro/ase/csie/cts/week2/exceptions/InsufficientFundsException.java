@@ -7,7 +7,7 @@ public class InsufficientFundsException extends Exception {
 	}
 	
 	// need to have a constr, don't have a def one
-	public InsufficientFundsException{
+	public InsufficientFundsException(){
 		
 	}
 }
