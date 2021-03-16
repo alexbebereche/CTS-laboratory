@@ -1,15 +1,34 @@
 package ro.ase.cts.g1092.refactor.phase5;
 
+import ro.ase.cts.g1092.refactor.exceptions.InvalidPriceException;
 import ro.ase.cts.g1092.refactor.exceptions.InvalidValueException;
+import ro.ase.cts.g1092.refactor.exceptions.InvalidYearsSinceRegistrationException;
+import ro.ase.cts.g1092.refactor.phase5.marketing.MarketingStrategyInterface;
 
 public class SalesStrategy {
 	
-	public static final int FIDELITY_YEARS_THRESHOLD = 10;
-	public static final float MAX_FIDELITY_DISCOUNT = 0.15f; // java, strong-type language, 0.15 is seen as a double, f should be mentioned
-//	public static final float NORMAL_DISCOUNT = 0.1f; // etc...not optimal, enum are classes
+	private MarketingStrategyInterface mkStrategy = null;
+	private SalesValidatorsInterface validator = null;
 	
-	public static float getFidelityDiscount(int yearsSinceRegistration) {
-		return (yearsSinceRegistration > FIDELITY_YEARS_THRESHOLD) ? MAX_FIDELITY_DISCOUNT : (float)yearsSinceRegistration/100; 
+	// we ask for the objects
+	public SalesStrategy(MarketingStrategyInterface mkStrategy, 
+			SalesValidatorsInterface validator) {
+		
+		// make sure is not null
+		if(mkStrategy == null || validator == null) {
+			throw new NullPointerException();
+		}
+		this.mkStrategy = mkStrategy;
+		this.validator = validator;
+	}
+	
+	// optional - depends on your design specs
+	// allowing the change at runtime of marketing strategy
+	public void setMarketingStrategy(MarketingStrategyInterface marketingStrategyInterface) {
+		if(mkStrategy == null) {
+			throw new NullPointerException();
+		}
+		this.mkStrategy = mkStrategy;
 	}
 	
 	public static float getPriceWithDiscount(
@@ -20,16 +39,14 @@ public class SalesStrategy {
 	}
 	
 	public float computeFinalPrice( // mixed camel case in java, don't forget
-			ProductType productType, float initialPrice, int yearsSinceRegistration) throws InvalidValueException
+			ProductType productType, float initialPrice, int yearsSinceRegistration) throws InvalidValueException, InvalidYearsSinceRegistrationException, InvalidPriceException
 	  {
-		
-		if(initialPrice <= 0 || yearsSinceRegistration < 0) {
-			throw new InvalidValueException();
-		}
+		validator.validatePrice(initialPrice);
+		validator.validateYearsSinceRegistration(yearsSinceRegistration);
 		
 	    float finalPrice = 0;
 	    float fidelityDiscount = 
-	    		(productType != ProductType.NEW) ? getFidelityDiscount(yearsSinceRegistration) : 0;
+	    		(productType != ProductType.NEW) ? mkStrategy.getFidelityDiscount(yearsSinceRegistration) : 0;
 
 	    finalPrice = getPriceWithDiscount(initialPrice, productType.getDiscount(), fidelityDiscount);
 	    
