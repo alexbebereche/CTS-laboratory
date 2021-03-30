@@ -24,6 +24,6 @@ public class TestSingleton {
 		}
 
 		// you still get the initial connection
-		DbConnection con5 = DbConnection.getDbConnection("10.0.0.1:3306", "cts_prod");
+		DbConnection con5 = DbConnection.getDbConnection("10.0.0.2:3306", "cts_prod");
 	}
 }
