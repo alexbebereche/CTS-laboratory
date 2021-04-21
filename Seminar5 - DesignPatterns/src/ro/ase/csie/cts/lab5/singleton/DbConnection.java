@@ -55,7 +55,7 @@ public class DbConnection {
 			dbConnection = new DbConnection(socket, schema);
 		}
 		// optional - throw an error if they try to open a connection to a different db
-		if(!socket.contentEquals(dbConnection.socket) || 
+		if(!socket.equals(dbConnection.socket) || 
 				!schema.equals(dbConnection.schema)) {
 			throw new UnsupportedOperationException("You already have an opened connection to a different DB");
 		}
