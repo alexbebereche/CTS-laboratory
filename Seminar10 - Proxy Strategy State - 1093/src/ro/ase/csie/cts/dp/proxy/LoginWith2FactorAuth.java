@@ -11,7 +11,7 @@ public class LoginWith2FactorAuth implements LoginInterface{
 
 	//fct specific to this proxy
 	public boolean checkGeneratedCode(int code) {
-		if(code == 1234) {
+		if(code == 1235) {
 			return true;
 		}
 		return false;
