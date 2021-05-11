@@ -5,7 +5,7 @@
 
 
 2. The game client must perform tasks in the background without interfering with the development of the game (without blocking or slowing it down)
-- customer data backup
-- receive updates for the forum
-- update 3D models in silent mode (during the game)
+- customer data backup - asynk
+- receive updates for the forum - asynk
+- update 3D models in silent mode (during the game) - asynk (all the asyncs will be objects in the implementation) - will actually execute the command
 - a solution must be found through which these tasks can be executed without affecting the execution of the game
