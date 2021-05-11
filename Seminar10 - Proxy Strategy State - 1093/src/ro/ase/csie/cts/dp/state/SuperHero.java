@@ -1,5 +1,9 @@
 package ro.ase.csie.cts.dp.state;
 
+import ro.ase.csie.cts.dp.state.states.CriticalWoundedState;
+import ro.ase.csie.cts.dp.state.states.NormalState;
+import ro.ase.csie.cts.dp.state.states.WoundedState;
+
 public class SuperHero {
 	
 	public static final int CRITICAL_VALUE = 50; //less than that, critically wounded...

@@ -19,7 +19,7 @@ public class DbConnection {
 		
 		if(connection == null) {
 			connection = new DbConnection(socket, schema);
-			connections.put(socket, connection);
+			connections.put(socket, connection); // daca nu exista, il pun in hashmap
 		}
 		
 		return connection;

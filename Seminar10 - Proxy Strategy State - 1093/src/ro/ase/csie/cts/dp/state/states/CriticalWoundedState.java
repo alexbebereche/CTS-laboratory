@@ -1,4 +1,6 @@
-package ro.ase.csie.cts.dp.state;
+package ro.ase.csie.cts.dp.state.states;
+
+import ro.ase.csie.cts.dp.state.MoveStateInterface;
 
 public class CriticalWoundedState implements MoveStateInterface {
 
