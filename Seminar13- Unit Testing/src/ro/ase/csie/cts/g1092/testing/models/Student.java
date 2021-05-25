@@ -36,6 +36,11 @@ public class Student {
 
 
 	public void setName(String name) throws WrongNameException{
+		//fix the method, no one is validating...
+		
+		if(name.length() < MIN_NAME_SIZE) {
+			throw new WrongNameException();
+		}
 		this.name = name;
 	}
 
@@ -46,6 +51,9 @@ public class Student {
 
 
 	public void setAge(int age) throws WrongAgeException{
+		if(age < MIN_AGE) {
+			throw new WrongAgeException();
+		}
 		this.age = age;
 	}
 
@@ -72,6 +80,29 @@ public class Student {
 		return sum/this.grades.size();
 		
 	}
+	
+	//for this fct, ordering will matter
+	public int getMinGrade() {
+		
+		if(this.grades.size() == 0) {
+			return 0;
+		}
+		
+//		int min = 0;
+		
+		int min = this.grades.get(0); // should start at the first value
+		//now, this will also fail if i dont have any grades...
+		
+		for(int grade : this.grades) {
+			if(min > grade) {
+				min = grade;
+			}
+		}
+		
+		return min; //min?
+		
+	}
+	
 	
 	
 }
