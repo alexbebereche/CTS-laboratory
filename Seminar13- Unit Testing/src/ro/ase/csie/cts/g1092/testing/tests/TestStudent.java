@@ -11,11 +11,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import ro.ase.csie.cts.g1092.testing.exceptions.WrongAgeException;
 import ro.ase.csie.cts.g1092.testing.exceptions.WrongGradesException;
 import ro.ase.csie.cts.g1092.testing.exceptions.WrongNameException;
 import ro.ase.csie.cts.g1092.testing.models.Student;
+import ro.ase.csie.cts.g1092.testing.tests.category.ImportantTest;
+import ro.ase.csie.cts.g1092.testing.tests.category.PerformanceTest;
 
 public class TestStudent {
 
@@ -148,6 +151,10 @@ public class TestStudent {
 		student.setAge(newAge); // expect an exception
 	}
 
+	
+	//add category
+	
+	@Category(ImportantTest.class)
 	@Test
 	public void testGetMinGradeOrderingAsc() throws WrongGradesException {
 		// cant use the initial grades, should define my own
@@ -182,6 +189,7 @@ public class TestStudent {
 
 	}
 
+	@Category({ImportantTest.class, PerformanceTest.class})
 	@Test
 	public void testGetMinGradeCardinalityOne() throws WrongGradesException {
 		int singleGrade = 9;
