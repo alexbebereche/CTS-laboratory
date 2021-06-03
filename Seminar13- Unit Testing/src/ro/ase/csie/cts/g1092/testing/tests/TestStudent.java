@@ -199,17 +199,16 @@ public class TestStudent {
 		assertEquals("Testing with zero grades", expectedGrade, minGrade);
 
 	}
-	
-	//proving the opposite is not true
+
+	// proving the opposite is not true
 	@Test
 	public void testSetNameInverseRelation() throws WrongNameException {
-		
+
 		String newName = "Alice";
-		
-		student.setName(newName); //it works, the newName is not the initial one anymore
-		
-		assertNotEquals(initialName, student.getName()); //if its chaning the name, should not get this
+
+		student.setName(newName); // it works, the newName is not the initial one anymore
+
+		assertNotEquals(initialName, student.getName()); // if its chaning the name, should not get this
 	}
-	
-	
+
 }

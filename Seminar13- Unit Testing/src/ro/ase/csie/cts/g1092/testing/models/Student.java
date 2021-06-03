@@ -51,7 +51,7 @@ public class Student {
 
 
 	public void setAge(int age) throws WrongAgeException{
-		if(age < MIN_AGE) {
+		if(age < MIN_AGE || age > MAX_AGE) {
 			throw new WrongAgeException();
 		}
 		this.age = age;
@@ -59,7 +59,7 @@ public class Student {
 
 
 	public void setGrades(ArrayList<Integer> grades) throws WrongGradesException{
-		this.grades = grades;
+		this.grades = (ArrayList<Integer>) grades.clone();
 	}
 	
 	
